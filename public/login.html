@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<link rel="shortcut icon" type="image/x-icon" href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/favicon.ico" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>GSA Fleet Vehicle Sales</title>
+	<link href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/css/style.css" rel="stylesheet"
+		type="text/css" />
+	<link href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/css/form.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/browcss.js"></script>
+	<script type="text/javascript"
+		src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery.min.js"></script>
+
+	<!---------------- Auto Suggest script start ------------------>
+	<link rel="stylesheet" type="text/css"
+		href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/css/jquery-ui.css">
+	<script type='text/javascript'
+		src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery.min.js"></script>
+	<script type='text/javascript'
+		src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery-ui.js"></script>
+
+	<script type="text/javascript">
+		function split(val) {
+			return val.split(/,\s*/);
+		}
+		function extractLast(term) {
+			return split(term).pop();
+		}
+
+		$(document).ready(function () {
+			$("#SearchBox").autocomplete({
+				source: '/GSAAutoAuctions/AutoSuggest'
+			});
+		});
+	</script>
+	<!---------------- Auto Suggest script end ------------------>
+
+	<!-- OKTA Code -->
+	<!-- <script src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.20.0/js/okta-sign-in.min.js"
+		type="text/javascript">
+		</script>-->
+	<link href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.20.0/css/okta-sign-in.min.css"
+		type="text/css" rel="stylesheet" /> 
+
+	<script>
+		/* $(document).ready(function() {
+			if(!window.location.hash) {
+				console.log("Reloading the page...");
+				window.location = window.location + '#loaded';
+				window.location.reload();
+			}
+		}); */
+
+
+
+
+
+
+
+		var oktaRedirectURLVar = 'https://gsa.okta.com/app/generalservicesadministration_gsaautoauctions_1/exk1zg4ek0LjUGmfk297/sso/saml';
+		var oktaBaseURLVar = 'https://gsa.okta.com';
+		var oktaIssuerURLVar = 'https://gsa.okta.com/oauth2/default';
+		var forgotPwdURLVar = 'https://autoauctions.gsa.gov/GSAAutoAuctions/ForgotPassword';
+		//alert(oktaRedirectURLVar);
+		var oktaSignIn = new OktaSignIn({
+			baseUrl: oktaBaseURLVar,
+			logo: 'https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/logo.jpg',
+			redirectUri: oktaRedirectURLVar,
+			language: 'en',
+			i18n: {
+				'en': {
+					'primaryauth.title': 'Enter your email and password to login',
+					'primaryauth.submit': 'Login',
+					'primaryauth.username.placeholder': 'Enter your email address',
+					'primaryauth.username.tooltip': ' ',
+					'primaryauth.password.tooltip': ' ',
+
+					'errors.E0000004': 'Sign in failed.  Invalid email address/password provided, or you may not be a registered user of this application.  Please check your credentials and try again, or register for an account!',
+					'password.expired.title': 'Your password has expired',
+					'error.auth.lockedOut': 'Your account has been locked for 30 minutes, please try later or contact customer service at FleetAlert@gsa.gov',
+					'mfa.sendEmail': 'Send verification email'
+				}
+			},
+			helpLinks: {
+				forgotPassword: '/GSAAutoAuctions/ForgotPassword',
+				help: 'https://fleet.fas.gsa.gov/mfa/MFA_FAQ.pdf'
+			},
+			authParams: {
+				issuer: oktaIssuerURLVar,
+				responseType: ['code'],
+				display: 'page'
+			}
+		});
+		if (oktaSignIn.token.hasTokensInUrl()) {
+			//alert('entered hasTokensInUrl');
+			oktaSignIn.token.parseTokensFromUrl(
+				function success(res) {
+					//alert('in success 103');
+					// The tokens are returned in the order requested by `responseType` above
+					var accessToken = res[0];
+					var idToken = res[1]
+					// Say hello to the person who just signed in:
+					console.log('Hello, ' + idToken.claims.email);
+					// Save the tokens for later use, e.g. if the page gets refreshed:
+					oktaSignIn.tokenManager.add('accessToken', accessToken);
+					oktaSignIn.tokenManager.add('idToken', idToken);
+					//document.location.href ="access_token.jsp?accessToken="+accessToken;
+					// Remove the tokens from the window location hash
+					window.location.hash = '';
+				},
+				function error(err) {
+					//alert('in error 1117');
+					// handle errors as needed
+					console.error(err);
+				}
+			);
+		} else {
+			oktaSignIn.session.get(function success(res) {
+				//alert('in oktaSignIn.session.get');
+				// Session exists, show logged in state.
+				console.log('res.status val, ' + res.status);
+				if (res.status === 'ACTIVE') {
+					//alert('ACTIVE');
+					console.log('Welcome back, ' + res.login);
+					/* oktaSignIn.renderEl({
+						el : '#okta-login-container'
+					}) */
+					//return;
+				}
+				oktaSignIn.renderEl({
+					el: '#okta-login-container'
+				},
+					function success(res) {
+						//alert('SUCCESS 139');
+						console.log('res.status val in Success function, ' + res.status);
+						//alert('res.status val in Success function, ' + res.status);
+						if (res.status === 'SUCCESS') {
+							res.session.setCookieAndRedirect(oktaRedirectURLVar);
+						}
+					},
+					function error(err) {
+						//alert('error 147');
+						// handle errors as needed
+						console.error(err);
+					});
+			});
+		}
+	</script>
+
+	<!-- end OKTA Code -->
+
+</head>
+
+<body>
+	<!--  Start of Login Screen --->
+
+
+
+	<!--Login -->
+	<link rel="stylesheet" href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/css/jquery.modal.css"
+		type="text/css" media="screen" />
+	<script type='text/javascript'
+		src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery.simplemodal.js"></script>
+	<!-- Load jQuery, SimpleModal and Basic JS files -->
+	<!--Login -->
+	<script type="text/javascript">
+		function closewindow() {
+			$('#basic-modal-content6').hide();
+			$.modal.close();
+		}
+	</script>
+
+	<!-- OKTA Code 
+<script
+	src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.19.0/js/okta-sign-in.min.js"
+	type="text/javascript">
+</script>
+<link
+	href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.19.0/css/okta-sign-in.min.css"
+	type="text/css"
+	rel="stylesheet"/>
+	-->
+	<!-- end OKTA Code -->
+
+
+	<div id="basic-modal-content" style="display: none;">
+
+
+
+
+		<script type="text/javascript">
+			$(document).ready(function () {
+				var resultVar = ' ';
+				if (resultVar != "") {
+					//$("#basic-modal-content").dialog({width: 600,height: 600,modal: true});
+					//$('#basic-modal-content').modal({minHeight : 600});
+				}
+			});
+		</script>
+		<h3>Please login to continue</h3>
+		<!-- div id="okta-login-container" -->
+	</div>
+
+	</div>
+
+	<div id="basic-modal-content6" style="display: none;">
+		<p align="center">IMPORTANT NOTICE</p>
+		<form id="loginBean" action="/GSAAutoAuctions/Login" method="post">
+
+
+			<div class="Text12px">Effective June 1, 2015, the daily limit per credit card account is $24,999.99.<br />
+				Debit transactions have no daily limit.<br /><br />
+
+				All credit card and debit card payments are processed through the Department<br />
+				of the Treasury's Pay.gov system. The new daily limit for credit cards is <br />
+				enforced through the Pay.gov system. If cardholders exceed the daily limit, <br />
+				a message will indicate that the maximum daily limit has been reached and <br />
+				the payment will be rejected.<br /><br />
+				If you have any questions, please contact autoauctions@gsa.gov for more information.<br /><br />
+			</div>
+			<div class="spacer10">&nbsp;</div>
+
+			<table width="580" cellpadding="2" cellspacing="2">
+				<tr>
+					<td colspan="3" align="center" class="paddingtop7">
+						<input type="button"
+							onclick="redirect('http://tfm.fiscal.treasury.gov/v1/announc/a-14-04.html')"
+							value="View Treasury's official announcement" class="Btn_Save">&nbsp;
+						<input type="button" onclick="closewindow();" class="Btn_Save" value="OK" />
+					</td>
+				</tr>
+			</table>
+
+			<script type="text/javascript">
+				function redirect(url) {
+					window.open(url, '_blank');
+				}
+			</script>
+		</form>
+	</div>
+
+	<div id="basic-modal-content7" style="display: none;">
+		<p align="center">COVID-19 GSA Fleet Update</p>
+		<form id="loginBean" action="/GSAAutoAuctions/Login" method="post">
+
+			<script type="text/javascript">
+				$(document).ready(function () {
+					var resultVar = 'false';
+					if (resultVar == 'true') {
+						$('#basic-modal-content7').modal();
+					}
+				});
+			</script>
+
+			<div class="Text12px" style="text-align:center;">
+				<b>Attention:</b><br>
+				With the growing concerns around the novel coronavirus (COVID-19), we want to update our customers on
+				the status of our sales.
+				Some of our auction locations have closed due to the outbreak and auctions cancelled. Most of those that
+				remain open have
+				switched to Internet bidding only with no physical attendance allowed in the lanes. Please review the
+				promotion field under
+				the sale details on our sale calendar for further information for each sale or contact the auction
+				house.
+				Even if the auction will allow physical attendance, we encourage all buyers to buy online to the maximum
+				extent possible
+				to minimize possible exposure. To bid online, please contact the auction house as soon as possible to
+				register for
+				Internet bidding. Don't wait until the day of the sale. If you are feeling ill, or have reason to
+				believe you have been
+				in contact with someone that has been exposed to the virus, we ask that you not attend the auctions in
+				person.<br /><br />
+				Thank you.<br /><br />
+			</div>
+
+			<p align="center">GSA Fleet's ONLINE Bus Sale | April 8-15</p>
+			<div class="Text12px" style="text-align:center;">
+				<a href="http://go.usa.gov/xdhH3" target="_blank">
+					<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/BusSalesOption.png"
+						alt="GSA Fleet's ONLINE Bus Sale" height="250" width="500" />
+				</a>
+			</div>
+
+			<div class="spacer10">&nbsp;</div>
+			<table width="580" cellpadding="2" cellspacing="2">
+				<tr>
+					<td colspan="3" align="center" class="paddingtop7">
+						<input type="button" onclick="closewindow();" class="Btn_Save" value="OK" />
+					</td>
+				</tr>
+			</table>
+
+		</form>
+	</div>
+
+	<div style="display:none">
+		<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/x.png" alt="Close Icon" />
+	</div>
+
+
+
+
+	<script type='text/javascript'
+		src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery.jscrollpane.min.js"></script>
+
+	<SCRIPT type="text/javascript">
+		function isNumberKey(evt) {
+			var charCode = (evt.which) ? evt.which : event.keyCode
+			if (charCode > 31 && (charCode < 48 || charCode > 57))
+				return false;
+
+			return true;
+		}
+	</SCRIPT>
+
+	<script>
+		/* The following code is to collect web site statistics as part of Digital Analytics Program (DAP) Universal Analytics (UA) - added on 3/23/2015*/
+		var ua_dap_script = document.createElement('script');
+		ua_dap_script.type = 'text/javascript';
+		ua_dap_script.id = "_fed_an_ua_tag";
+		ua_dap_script.src = 'https://autoauctions.gsa.gov/resources/js/Universal-Federated-Analytics.js?agency=GSA';
+		document.getElementsByTagName("head")[0].appendChild(ua_dap_script);
+	/* end of collect web site statistics as part of Digital Analytics Program (DAP) Universal Analytics (UA) */
+	</script>
+
+	<div class="header">
+		<div class="top-header">
+			<form id="loginBean" action="/GSAAutoAuctions/Login" method="post">
+				<div class="span-2 register">
+					<a href="/GSAAutoAuctions/Registration">Register</a>
+				</div>
+				<div class="span-2 login">
+					<a href="/GSAAutoAuctions/Login"> Login </a>
+				</div>
+			</form>
+			<form id="searchBean" action="/GSAAutoAuctions/Login" method="post">
+				<div class="span-24">
+					<div class=" span-6 logo">
+						<a href="/GSAAutoAuctions"> <img
+								src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/GSA_Logo.gif"
+								width="260" height="57" alt="GSA Fleet Vehicle Sales" /> </a>
+					</div>
+				</div>
+				<div class="span-23">
+					<div class="span-10 menu" align="right">
+						<div class=" span-1 menu_left">
+							<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/menu_left.png"
+								width="22" height="34" alt="Rounder Corner image on left" />
+						</div>
+						<div class="menu_bg">
+							<div class="nav">
+								<ul>
+									<li>
+										<a href="/GSAAutoAuctions/">Home</a>
+									</li>
+
+									<li>
+										<a href="/GSAAutoAuctions/MapSearch">Map Search</a>
+									</li>
+									<li class="noline">
+										<a href="/GSAAutoAuctions/SaleCalendar">Sale Calendar</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class=" span-1 menu_right">
+							<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/menu_right.png"
+								width="22" height="34" alt="Right Corner" />
+						</div>
+					</div>
+					<div class="search" style="min-height: 42px;">
+						<div class="span-7 search_box">
+							<input id="SearchBox" name="searchText" Title="Search Box" value="Search" class="span-8"
+								onfocus="if(this.value == &#39;Search&#39;){ this.value = &#39;&#39;;} "
+								onblur="if(this.value == &#39;&#39;){ this.value = &#39;Search&#39;;}" type="text"
+								value="" />
+						</div>
+						<div class="span-7 search_zip">
+							<label for="Zip Code" style="height: 10px;;">
+								<input id="zipCodeId" name="zipCode" title="Zip Code"
+									onkeypress="return isNumberKey(event);" value="Zip Code"
+									onfocus="if(this.value == &#39;Zip Code&#39;){ this.value = &#39;&#39;;}"
+									onblur="if(this.value == &#39;&#39;){ this.value = &#39;Zip Code&#39;;}" type="text"
+									value="" maxlength="5" />
+							</label>
+						</div>
+						
+						<div class="span-7 search_button" style="margin: 4px 0 0 5px;">
+							<input id="distanceSearchButtonId" type="submit" class="Btn_Search" name="action"
+								value="Search" />
+						</div>
+						
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<form id="searchBean" action="/loginpost" method="POST">
+		<!--Top Header -->
+
+
+		<!--Top Header -->
+		<div class="container" style="width: 950px;  margin: 0 auto;">
+			<div class="span-23">
+				<div class="description">
+					<div class="heading04">Please login to continue</div>
+
+					<em class="error-text-14B lineHeight14" style="text-align: center"> </em>
+
+					<div id="login-container">
+						<br />
+						<div data-se="auth-container" id="okta-sign-in" class="auth-container main-container no-beacon" >
+							<div class="okta1-sign-in-header auth-header"> <img
+									src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/logo.jpg"
+									class="auth-org-logo" alt="">
+								<div data-type="beacon-container" class="beacon-container"></div>
+							</div>
+							<div class="auth-content">
+								<div class="auth-content-inner">
+									<div class="primary-auth">
+										<form method="POST" action="/login" data-se="o-form"
+											slot="content" id="form18"
+											class="primary-auth-form o-form o-form-edit-mode">
+											<div data-se="o-form-content" class="o-form-content o-form-theme clearfix">
+												<h2 data-se="o-form-head" class="okta1-form-title o-form-head">Enter your
+													email and password to login</h2>
+												<div class="o-form-error-container" data-se="o-form-error-container">
+												</div>
+												<div class="o-form-fieldset-container"
+													data-se="o-form-fieldset-container">
+													<div data-se="o-form-fieldset"
+														class="o-form-fieldset o-form-label-top">
+														<div data-se="o-form-input-container"
+															class="o-form-input o-form-has-errors"
+															aria-describedby="input-container-error52"><span
+																data-se="o-form-input-username"
+																class="o-form-input-name-username o-form-control okta1-form-input-field input-fix o-form-has-errors">
+																
+																<input type="text" class="form-control"
+																	placeholder="Enter your email address"
+																	name="username" value=""
+																	aria-label="Enter your email address"
+																	autocomplete="off"> </span>
+															
+														</div>
+													</div>
+													<div data-se="o-form-fieldset"
+														class="o-form-fieldset o-form-label-top">
+														<div data-se="o-form-input-container" class="o-form-input"><span
+																data-se="o-form-input-password"
+																class="o-form-input-name-password o-form-control okta1-form-input-field input-fix">
+																
+																<input type="password" placeholder="Password" class="form-control"
+																	name="password" id="okta1-signin-password" value=""
+																	aria-label="Password" autocomplete="off"> </span>
+														</div>
+													</div>
+													<div data-se="o-form-fieldset"
+														class="o-form-fieldset o-form-label-top margin-btm-0">
+														<div data-se="o-form-input-container" class="o-form-input"><span
+																data-se="o-form-input-remember"
+																class="o-form-input-name-remember">
+																<div class="custom-checkbox"><input type="checkbox"
+																		name="remember" id="input39"
+																		class="checkedFocus"><label for="input39"
+																		data-se-for-name="remember" class="">Remember
+																		me</label></div>
+															</span></div>
+													</div>
+												</div>
+											</div>
+											<div class="o-form-button-bar"><input class="button button-primary"
+													type="submit" value="Login" 
+													data-type="save"></div>
+										</form>
+										<div class="auth-footer"> <a href="#" data-se="needhelp" aria-expanded="false"
+												aria-controls="help-links-container" class="link help js-help"> Need
+												help signing in? </a>
+											<ul class="help-links js-help-links" id="help-links-container"
+												style="display: none;">
+												<li> <a href="#" data-se="forgot-password"
+														class="link js-forgot-password"> Forgot password? </a> </li>
+												<li> <a href="https://fleet.fas.gsa.gov/mfa/MFA_FAQ.pdf"
+														data-se="help-link" class="link js-help-link" target="_blank">
+														Help </a> </li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-----------------------footer----------------------------->
+
+
+
+			<script type="text/javascript">
+				function getPopupWindow(val) {
+					$('#basic-modal-content6').modal();
+				}
+			</script>
+
+			<div class="span-24 footer">
+				<div class="span-15 foot-links">
+					<div class="span-3 link2">
+						<ul>
+							<li><a href="/GSAAutoAuctions/AboutUS" target="_blank"> About Us </a></li>
+							<li><a href="/GSAAutoAuctions/ContactUs" target="_blank"> Contact Us </a></li>
+						</ul>
+					</div>
+					<div class="span-4 link3">
+						<ul>
+							<li><a href="/GSAAutoAuctions/TermsAndConditions" target="_blank"> Terms and Conditions </a>
+							</li>
+							<li><a href="/GSAAutoAuctions/PrivacyPolicy" target="_blank"> Privacy Policy</a></li>
+						</ul>
+					</div>
+					<div class="span-4 link3">
+						<ul>
+							<li><a href="/GSAAutoAuctions/OtherGovernmentSales" target="_blank"> Other Government Sales
+								</a></li>
+							<li><a href="/GSAAutoAuctions/BrowserCompatibility" target="_blank"
+									title="This webpage is best viewed in either Google Chrome or Mozilla Firefox or Internet Explorer 9.x or higher.">
+									Browser Compatibility </a></li>
+						</ul>
+					</div>
+					<div class="span-4 link3">
+						<ul>
+							<li><a href="javascript:getPopupWindow('basic-modal-content6');"> Credit Card Notice </a>
+							</li>
+							<li><a href="/GSAAutoAuctions/Recall" target="_blank"> Recall Information </a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="span-9 social">
+					<a href="https://www.facebook.com/gsafleetvehiclesales" target="_blank">
+						<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/facebook.png"
+							alt="Facebook" title="Find us on Facebook" />
+					</a>
+					&nbsp;&nbsp;
+					<a href="/GSAAutoAuctions/SaleFeed" target="_blank">
+						<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/rss.png" alt="RSS"
+							title="Really Simple Syndication" />
+					</a>
+				</div>
+			</div>
+			<!-----------------------footer----------------------------->
+		</div>
+	</form>
+</body>
+
+</html>

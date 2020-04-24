@@ -1,0 +1,887 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="shortcut icon" type="image/x-icon"
+	href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/favicon.ico" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>GSA Fleet Vehicle Sales</title>
+<link href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/css/style.css"
+	rel="stylesheet" type="text/css" />
+<link href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/css/form.css"
+	rel="stylesheet" type="text/css" />
+
+<script type="text/javascript"
+	src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/browcss.js"></script>
+
+<!--Login -->
+<link rel="stylesheet"
+	href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/css/jquery.modal.css "
+	type="text/css" media="screen" />
+<script src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery.min.js"
+	type="text/javascript" charset="utf-8"></script>
+
+<script src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery.modal.min.js"
+	type="text/javascript" charset="utf-8"></script>
+<script type='text/javascript' src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery.simplemodal.js"></script>
+<script type='text/javascript' src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/basic.js"></script>
+ <!-- Load jQuery, SimpleModal and Basic JS files -->
+ <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/3.26/esri/css/esri.css">
+
+<!--Login -->
+
+<!---------------------image slider-------------------------->
+
+<link type="text/css"
+	href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/img/base.css " rel="stylesheet" />
+<script type='text/javascript' src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery.min.js"></script>
+<script type="text/javascript"
+	src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/img/jquery.jcarousel.min.js"></script>
+<script type="text/javascript"
+	src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/img/jquery.pikachoose.min.js"></script>
+<script language="javascript">
+	/*
+	$(document).ready(function() {
+		$("#pikame").PikaChoose();
+	});
+	*/
+</script>
+<!---------------------------------end image slider----------------------------->
+
+<!---------------- Auto Suggest script start ------------------>
+<link rel="stylesheet" type="text/css" href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/css/jquery-ui.css">
+<script type='text/javascript' src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery-ui.js"></script>
+
+<script type="text/javascript">
+	function split(val) {
+		return val.split(/,\s*/);
+	}
+	function extractLast(term) {
+		return split(term).pop();
+	}
+
+	$(document).ready(function() {
+		$("#SearchBox").autocomplete({
+			source : 'https://autoauctions.gsa.gov/GSAAutoAuctions/AutoSuggest'
+		});
+	});
+</script>
+<!---------------- Auto Suggest script end ------------------>
+
+<script type="text/javascript">
+	function confirmExit(url) {
+		if (confirm('You are leaving the website AutoAuction.gov.  This website is not a U.S. Government website.  Would you like to continue?')) {
+			window.location = url;
+		}
+	}
+</script>
+
+</head>
+<body>
+	<!--  Start of Login Screen --->
+	
+
+
+<!--Login -->
+<link rel="stylesheet" href="./resources/css/jquery.modal.css" type="text/css" media="screen" />
+<script type='text/javascript' src="./resources/js/jquery.simplemodal.js"></script>
+<!-- Load jQuery, SimpleModal and Basic JS files -->
+<!--Login -->
+<script type="text/javascript">
+	function closewindow() {
+		$('#basic-modal-content6').hide();
+		$.modal.close();
+	}
+</script>
+
+<!-- OKTA Code 
+<script
+	src="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.19.0/js/okta-sign-in.min.js"
+	type="text/javascript">
+</script>
+<link
+	href="https://ok1static.oktacdn.com/assets/js/sdk/okta-signin-widget/2.19.0/css/okta-sign-in.min.css"
+	type="text/css"
+	rel="stylesheet"/>
+	-->
+<!-- end OKTA Code -->
+
+
+<div id="basic-modal-content" style="display: none;">
+	
+	
+	
+	
+	<script type="text/javascript">
+	    $(document).ready(function(){
+	    	var resultVar = '';
+			if(resultVar != "") {
+				//$("#basic-modal-content").dialog({width: 600,height: 600,modal: true});
+				//$('#basic-modal-content').modal({minHeight : 600});
+			}
+	    });
+	</script>
+	<h3>Please login to continue</h3>
+	<!-- div id="okta-login-container" -->
+	</div>
+	
+	<!-- script>
+		var oktaRedirectURLVar = '';
+		var oktaBaseURLVar = '';
+		var oktaIssuerURLVar = '';
+		var oktaSignIn = new OktaSignIn({
+			baseUrl: oktaBaseURLVar,
+			logo: '/images/DTbanner.jpg',
+				redirectUri:oktaRedirectURLVar,
+				language: 'en',
+					i18n: {
+						'en' : {
+							'primaryauth.title': 'Please login to continue',
+							'primaryauth.submit': 'Login',
+							'primaryauth.username.placeholder': 'Enter your email address',
+							'primaryauth.username.tooltip': ' ',
+							'primaryauth.password.tooltip': ' ',
+							'error.username.required': 'Please enter your email',
+							'error.password.required': 'Please enter a password',
+							'errors.E0000004': 'Sign in failed!',
+							'password.expired.title': 'Your password has expired',
+							'error.auth.lockedOut': 'Your account is locked. Please contact Customer Service at FleetAlert@gsa.gov',
+							'mfa.sendEmail' : 'Click here to send verification email',
+							'mfa.sendCode' : 'Click here to send verification code'
+						}
+					},
+					helpLinks: {
+						forgotPassword: 'https://autoauctions.gsa.gov/GSAAutoAuctions/ForgotPassword',
+						help: 'javascript:openWindow("/help/HELP_DTLOGIN.PDF");',
+							
+					},
+					authParams: {
+						issuer: oktaIssuerURLVar,
+						responseType: ['code'],
+						display: 'page'
+						}
+					});
+			if (oktaSignIn.token.hasTokensInUrl()) {
+				oktaSignIn.token.parseTokensFromUrl(
+					function success(res) {
+						// The tokens are returned in the order requested by `responseType` above
+						var accessToken = res[0];
+						var idToken = res[1]
+						// Say hello to the person who just signed in:
+						console.log('Hello, ' + idToken.claims.email);
+						// Save the tokens for later use, e.g. if the page gets refreshed:
+						oktaSignIn.tokenManager.add('accessToken', accessToken);
+						oktaSignIn.tokenManager.add('idToken', idToken);
+						//document.location.href ="access_token.jsp?accessToken="+accessToken;
+						// Remove the tokens from the window location hash
+						window.location.hash='';
+					},
+					function error(err) {
+						// handle errors as needed
+						console.error(err);
+					}
+				);
+			} else {
+				oktaSignIn.session.get(function success(res) {
+					// Session exists, show logged in state.
+					console.log('res.status val, ' + res.status );
+					if (res.status === 'ACTIVE') {
+						console.log('Welcome back, ' + res.login);
+						oktaSignIn.renderEl({
+							el : '#okta-login-container'
+						})
+						return;
+					}							
+					oktaSignIn.renderEl({
+						el : '#okta-login-container'
+					},
+					function success(res) {
+						console.log('res.status val in Success function, ' + res.status );
+						if (res.status === 'SUCCESS') {
+							res.session.setCookieAndRedirect(oktaRedirectURLVar);
+						}
+					},
+					function error(err) {
+						// handle errors as needed
+						console.error(err);
+					});
+				});
+			}
+	</script-->
+	<!-- 
+	<script>
+		var oktaRedirectURLVar = '';
+		var signIn= new OktaSignIn({baseUrl: 'https://gsaatm-eval.okta.com'});
+		signIn.renderEl(
+		{ el: '#okta-login-container' },
+		function (res) {
+		if (res.status === 'SUCCESS') {
+		res.session.setCookieAndRedirect(oktaRedirectURLVar);
+		}
+		}
+		);
+	</script>
+	-->
+	<!-- 
+	<form id="loginBean" action="https://autoauctions.gsa.govhttps://autoauctions.gsa.gov/GSAAutoAuctions/Login" method="post">
+		
+		<script type="text/javascript">
+		    $(document).ready(function(){
+		    	var resultVar = '';
+				if(resultVar != "") {
+					//$("#basic-modal-content").dialog({width: 600,height: 200,modal: true});
+					$('#basic-modal-content').modal();
+				}
+		    });
+		</script>
+		
+		<ul class="form_table-100 float_LT form-left-panel">
+			<li>
+				<label class="label12B" for="Username">Email ID
+					<em class="error-text-14B lineHeight14">*</em>
+				</label> 
+				<input id="emailID" name="emailId" tabindex="0" onkeyup="this.value=this.value.toUpperCase();" type="text" class="span-5 inputAll" value=""/>
+			</li>
+			<div class="clear"></div>
+			<li>
+				<label class="label12B" for="Password">Password 
+					<em class="error-text-14B lineHeight14">*</em>
+				</label> 
+				<input id="password" name="password" tabindex="0" type="password" class="span-4 inputAll" value="" alt="Password" autocomplete="off"/>
+			</li>
+			<div class="clear"></div>
+			<table width="550" border="0" align="center" cellpadding="2" cellspacing="5">
+				<tr>
+					<td width="220"></td>
+					<td align="left" width="130">
+						<input type="submit" name="action" class="Btn_Save" value="Login" tabindex="0"/>
+						<input type="submit" id="cancel" name="action" class="Btn_Reset" value="Close" tabindex="0" />
+					</td>
+					<td width="200" align="right">
+						<a href="https://autoauctions.gsa.gov/GSAAutoAuctions/ForgotPassword" style="color: #06F;" tabindex="0">Forgot Password</a>
+						&nbsp;&nbsp;&nbsp;
+						<a href="https://autoauctions.gsa.gov/GSAAutoAuctions/Registration" style="color: #06F;" tabindex="0">Register</a>
+					</td>
+				</tr>
+			</table>
+		</ul>
+		<div class="clear"></div>
+		Sign up to receive email notifications of upcoming sales and available vehicles.  Once you register, you can set your preferences on the Profile page.
+	</form>
+	-->
+</div>
+
+<div id="basic-modal-content6" style="display: none;" >
+	<p align="center">IMPORTANT NOTICE</p>
+	<form id="loginBean" action="/vehicleListingResult" method="post">
+		
+		
+			<div class="Text12px">Effective June 1, 2015, the daily limit per credit card account is $24,999.99.<br /> 
+				Debit transactions have no daily limit.<br /><br />
+				
+				All credit card and debit card payments are processed through the Department<br /> 
+				of the Treasury's Pay.gov system. The new daily limit for credit cards is <br />
+				enforced through the Pay.gov system. If cardholders exceed the daily limit, <br />
+				a message will indicate that the maximum daily limit has been reached and <br />
+				the payment will be rejected.<br /><br />
+				If you have any questions, please contact autoauctions@gsa.gov for more information.<br /><br />
+				</div>
+			<div class="spacer10">&nbsp;</div>
+			
+				<table width="580" cellpadding="2" cellspacing="2">
+					<tr>
+						<td colspan="3" align="center" class="paddingtop7">
+							<input type="button" onclick="redirect('http://tfm.fiscal.treasury.gov/v1/announc/a-14-04.html')" value="View Treasury's official announcement" class="Btn_Save" >&nbsp;
+							<input type="button" onclick="closewindow();"  class="Btn_Save" value="OK" />
+						</td>
+					</tr>
+				</table>
+				
+		<script type="text/javascript">
+			function redirect(url) {
+				window.open(url, '_blank');
+			}
+		</script>
+	</form>
+</div>
+
+<div id="basic-modal-content7" style="display: none;" >
+	<p align="center">COVID-19 GSA Fleet Update</p>
+	<form id="loginBean" action="/GSAAutoAuctions/VehicleDetails/1D7RW3GK4BS633788" method="post">
+		
+		<script type="text/javascript">
+		    $(document).ready(function(){
+		    	var resultVar = 'false';
+		    	if(resultVar == 'true') {
+		    		$('#basic-modal-content7').modal();
+				}
+			});
+		</script>
+		
+			<div class="Text12px" style="text-align:center;">
+				<b>Attention:</b><br>
+				With the growing concerns around the novel coronavirus (COVID-19), we want to update our customers on the status of our sales. 
+				Some of our auction locations have closed due to the outbreak and auctions cancelled. Most of those that remain open have 
+				switched to Internet bidding only with no physical attendance allowed in the lanes. Please review the promotion field under 
+				the sale details on our sale calendar for further information for each sale or contact the auction house. 
+				Even if the auction will allow physical attendance, we encourage all buyers to buy online to the maximum extent possible 
+				to minimize possible exposure. To bid online, please contact the auction house as soon as possible to register for 
+				Internet bidding. Don't wait until the day of the sale. If you are feeling ill, or have reason to believe you have been 
+				in contact with someone that has been exposed to the virus, we ask that you not attend the auctions in person.<br /><br />
+				Thank you.<br /><br />
+			</div>
+			
+			<p align="center">GSA Fleet's ONLINE Bus Sale | April 8-15</p>
+			<div class="Text12px" style="text-align:center;">
+				<a href="http://go.usa.gov/xdhH3" target="_blank">
+					<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/BusSalesOption.png" alt="GSA Fleet's ONLINE Bus Sale" height="250" width="500" />
+				</a>
+			</div>
+			
+			<div class="spacer10">&nbsp;</div>
+				<table width="580" cellpadding="2" cellspacing="2">
+					<tr>
+						<td colspan="3" align="center" class="paddingtop7">
+							<input type="button" onclick="closewindow();"  class="Btn_Save" value="OK" />
+						</td>
+					</tr>
+				</table>
+				
+	</form>
+</div>
+
+<!-- 
+<div id="basic-modal-content7" style="display: none;" >
+	<p align="center">GSA Fleet's ONLINE Bus Sale</p>
+	<form id="loginBean" action="https://autoauctions.gsa.gov/GSAAutoAuctions/VehicleDetails/1D7RW3GK4BS633788" method="post">
+		
+		<script type="text/javascript">
+		    $(document).ready(function(){
+		    	var resultVar = 'false';
+		    	if(resultVar == 'true') {
+		    		$('#basic-modal-content7').modal();
+				}
+			});
+		</script>
+		
+			<div class="Text12px" style="text-align:center;">
+				Keep A Look Out for GSA Fleet's Next <b>ONLINE</b> Bus Sale!<br>
+				Open to the Public! Sale Starts MARCH 11th at 11 AM CT!<br>
+				<b>To Bid, Register at: </b> <a href="https://gsaauctions.gov/" target="_blank" style="color:#06F;">https://gsaauctions.gov/</a><br /><br />
+			</div>
+			<div class="spacer10">&nbsp;</div>
+				<table width="580" cellpadding="2" cellspacing="2">
+					<tr>
+						<td colspan="3" align="center" class="paddingtop7">
+							<input type="button" onclick="closewindow();"  class="Btn_Save" value="OK" />
+						</td>
+					</tr>
+				</table>
+				
+	</form>
+</div>
+-->
+
+
+
+
+
+
+	<!--  End of Login Screen --->
+	<!-- preload the images -->
+	<div style="display:none">
+		<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/x.png" alt="Close Icon"/>
+	</div>
+	
+	<!--Top Header -->
+	
+
+
+
+<script type='text/javascript' src="./resources/js/jquery.jscrollpane.min.js"></script>
+
+<SCRIPT type="text/javascript">
+      function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+         return true;
+      }
+</SCRIPT>
+
+<script>
+	/* The following code is to collect web site statistics as part of Digital Analytics Program (DAP) Universal Analytics (UA) - added on 3/23/2015*/
+	var ua_dap_script = document.createElement('script');
+	ua_dap_script.type = 'text/javascript';
+	ua_dap_script.id="_fed_an_ua_tag";
+	ua_dap_script.src = './resources/js/Universal-Federated-Analytics.js?agency=GSA';
+	document.getElementsByTagName("head")[0].appendChild(ua_dap_script);
+	/* end of collect web site statistics as part of Digital Analytics Program (DAP) Universal Analytics (UA) */
+</script>
+
+<div class="header">
+	<div style="width: 950px; margin: 0 auto;">
+        <form id="searchBean" action="/GSAAutoAuctions/Login" method="post">
+            <div class="span-24">
+                <div class=" span-6 logo">
+                    <a href="/GSAAutoAuctions"> <img
+                            src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/GSA_Logo.gif"
+                            width="260" style="margin-top: 11px;" height="57" alt="GSA Fleet Vehicle Sales" /> </a>
+                </div>
+            </div>
+            <div class="span-23">
+                <div class="span-10 menu" align="right">
+                    <div class=" span-1 menu_left">
+                        <img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/menu_left.png"
+                            width="22" height="34" alt="Rounder Corner image on left" />
+                    </div>
+                    <div class="menu_bg">
+                        <div class="nav">
+                            <ul>
+                                <li>
+                                    <a href="/GSAAutoAuctions/">Home</a>
+                                </li>
+
+                                <li>
+                                    <a href="/GSAAutoAuctions/MapSearch">Map Search</a>
+                                </li>
+                                <li>
+                                    <a href="/GSAAutoAuctions/SaleCalendar">Sale Calendar</a>
+								</li>
+								<li class="noline">
+									<a href="/">Logout</a>
+								</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class=" span-1 menu_right">
+                        <img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/menu_right.png"
+                            width="22" height="34" alt="Right Corner" />
+                    </div>
+                </div>
+                <div class="search" style="min-height: 42px;">
+                    <div class="span-7 search_box">
+                        <input id="SearchBox" name="searchText" Title="Search Box" value="Search"
+                            class="span-8"
+                            onfocus="if(this.value == &#39;Search&#39;){ this.value = &#39;&#39;;} "
+                            onblur="if(this.value == &#39;&#39;){ this.value = &#39;Search&#39;;}"
+                            type="text" value="" />
+                    </div>
+                    <div class="span-7 search_zip">
+                        <label for="Zip Code" style="height: 10px;;">
+                            <input id="zipCodeId" name="zipCode" title="Zip Code"
+                                onkeypress="return isNumberKey(event);" value="Zip Code"
+                                onfocus="if(this.value == &#39;Zip Code&#39;){ this.value = &#39;&#39;;}"
+                                onblur="if(this.value == &#39;&#39;){ this.value = &#39;Zip Code&#39;;}"
+                                type="text" value="" maxlength="5" />
+                        </label>
+                    </div>
+
+                    <div class="span-7 search_button" style="margin: 7px 0 0 5px;">
+                        <input id="distanceSearchButtonId" type="submit"
+                            style="height: 27px; padding-top: 3px;" class="btn btn-primary" name="action"
+                            value="Search" />
+                    </div>
+					<div style="text-align: center;margin: 7px 0 0 5px;" align="right">
+						Welcome <%=session.email%>
+					</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+	<!--Top Header -->
+	<form action="/vehicleListingResult" method="post">
+		<div class="container">
+			<div class="span-23 PaddingBot5"> 
+				<div class="float_LT">
+			    	&nbsp;<input type="submit" name="action" class="Btn_Save" value="Back to Search Result" />
+			    </div>
+			 </div>
+
+			<div class="span-24">
+				<div class="spacer5"></div>
+				<!--  Start Left Panel  --->
+				<div class="span-14_1">
+					<div class="description float_LT">
+						<div class="des-head">2011 DODGE
+							DAKOTA 
+							<a href="https://vinrcl.safercar.gov/vin" style="float:right;margin-top:-7px;margin-right:6px" target="_blank">
+								<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/recall.png" alt="Recall Lookup"/>
+							</a>
+						</div>
+						<div class="span-13_1"> 
+							<ul> 
+            	 				<li> 
+			                 	    <div class="span-6_1 list-con float_LT">  
+				                    	<div class="list-name"> VIN <span style="color: red;">*</span></div>
+				                        <div  class="list-content">: <%=Vehicle[0].vin%></div>
+				                        <div class="list-name"> Make <span style="color: red;">*</span></div>
+				                        <div class="list-content">: <%=Vehicle[0].makemodel%></div>
+				                        <div class="list-name">Series</div>
+				                        <div class="list-content">: CREW CAB PICKUP 4-DR</div>
+				                        <div class="list-name">Mileage <span style="color: red;">*</span></div>
+				                        <div class="list-content">: <%=Vehicle[0].miles%></div>
+				                        <div class="list-name">Engine <span style="color: red;">*</span></div>
+				                        <div class="list-content">: <%=Vehicle[0].cylinders%></div>
+				                        <div class="list-name">Transmission</div>
+				                        <div class="list-content">: Automatic Transmission</div>
+				                        <div class="list-name">Drive Type</div>
+				                        <div class="list-content">: 4-Wheel Drive</div>
+				                        <div class="list-name">Interior</div>
+				                        <div class="list-content">: Cloth Interior</div>
+				                        <div class="list-name">Interior Color</div>
+				                        <div class="list-content">: GRAY</div>
+				                        <div class="list-name">Power Steering</div>
+				                        <div class="list-content">: 
+				                        	
+				                        		
+				                        			
+				                        				Yes
+				                        			
+				                        			
+				                        													    
+											
+				                        </div>
+				                        <div class="list-name">Power Brakes</div>
+				                        <div class="list-content">: Anti Lock Brakes</div>
+				                        <div class="list-name">Power Locks</div>
+				                        <div class="list-content">: 
+				                        	
+				                        		
+				                        			
+				                        				Yes
+				                        			
+				                        			
+				                        													    
+											
+				                        </div>
+				                        <div class="list-name">Radio</div>
+				                        <div class="list-content">: AM/FM CD</div>
+				                        <div class="list-name">Rear Defroster</div>
+				                        <div class="list-content">: 
+				                        	
+				                        		
+				                        			
+				                        				Yes
+				                        			
+				                        			
+				                        													    
+											
+				                        </div>
+				                        <div class="list-name">Open Recall <span style="color: red;">*</span></div>
+				                        <div class="list-content">: 
+				                        	
+												
+												
+											<%=Vehicle[0].openrecall%>
+											
+				                        </div>
+				                	</div>	
+				                       
+				                    <div class="span-6_2 list-con3 float_RT">   
+				                       	<div class="list-name2">Year</div>
+				                        <div class="list-content">: 2011</div>
+				                        <div class="list-name2">Model</div>
+				                        <div class="list-content">: DAKOTA</div>
+				                        <div class="list-name2">Sale Date <span style="color: red;">*</span></div>
+				                        <div class="list-content">: 
+				                        	<a href="/GSAAutoAuctions/SaleNumber/1GFBPC20201">
+				                        		<%=Vehicle[0].saledate%>
+				                        		<!-- 20200430// -->
+				                        	</a>
+				                        </div>
+				                        <div class="list-name2">Body Style</div>
+				                        <div class="list-content">: </div>
+				                        <div class="list-name2">Color</div>
+				                        <div class="list-content">: DARK   GRAY</div>
+				                        <div class="list-name2">Engine Size</div>
+				                        <div class="list-content">: 3.7</div>
+				                        <div class="list-name2">Roof</div>
+				                        <div class="list-content">: </div>
+				                        <div class="list-name2">Air Conditioning</div>
+				                        <div class="list-content">: 
+				                        	
+				                        		
+				                        			
+				                        				Yes
+				                        			
+				                        			
+				                        													    
+											
+				                        </div>
+				                        <div class="list-name2">AirBags</div>
+				                        <div class="list-content">: ?4?</div>
+				                        <div class="list-name2">Tilt</div>
+				                        <div class="list-content">: 
+				                        	
+				                        		
+				                        			
+				                        				Yes
+				                        			
+				                        			
+				                        													    
+											
+				                        </div>
+				                        <div class="list-name2">No. of seats</div>
+				                        <div class="list-content">: 5</div>
+				                        <div class="list-name2">Power Windows</div>
+				                        <div class="list-content">: 
+				                        	
+				                        		
+				                        			
+				                        				Yes
+				                        			
+				                        			
+				                        													    
+											
+				                        </div>
+				                        <div class="list-name2">Cruise Control</div>
+				                        <div class="list-content">: 
+				                        	
+				                        		
+				                        			
+				                        			
+				                        				No
+				                        			
+				                        													    
+											
+				                        </div>
+				                        <div class="list-name2">Power Seats</div>
+				                        <div class="list-content">: Buckets</div>
+				                        <div class="list-name2" style="font-size:10px;">GSA Notified Date</div>
+				                        <div class="list-content" style="font-size:10px;">: 
+				                        	
+												
+												
+													No known recall as of 04/21/2020
+												
+											
+				                        </div>
+				                        <div class="list-content"> 
+				                        	
+												
+												
+												
+												
+													<strong style="color:magenta;"></strong>
+												
+											
+				                        </div>
+				                    </div>
+				                 </li> 
+			                </ul>			
+			               	<br />
+						</div>
+						<div class="clear"></div>
+			            <div class="spacer10">&nbsp;</div>
+			            <div class="des-content"> 
+			               	<p>
+			            		<strong> Additional Equipment :</strong> Engine Model, Transmission Info, Air Conditioning, Cruise Control  
+			                </p>
+			            </div>
+			            <div class="clear"></div>
+			            <div class="spacer10">&nbsp;</div>
+			            <div class="des-content"> 
+			               	<p>
+			            		<strong> Comments :</strong>   
+			                </p>
+			            </div>
+			            <!------------------Start Upcoing sales ------------------>
+		               	<div class="clear"></div> 
+						<div class="heading03">Upcoming sales at this location :</div>
+						<div class="select-date">
+							<ul>
+								
+									
+									
+										
+											<li>
+												<a href="/GSAAutoAuctions/SaleNumber/1GFBPC20201">
+													
+													04/30/2020 
+													1:15 PM
+													
+													<!-- 20200430// -->
+												</a>
+											</li>
+										
+									
+								
+							</ul>
+						</div>
+						<!-------------------End Upcoing sales----------------->
+					</div>							
+				</div>
+				<!--  End Left Panel  --->
+
+				<!----------------------------------right panel ---------------------------------->
+				<div class="span-10 right-panel float_RT">
+					<div class="image-slider">
+						<!------------------Small image slider ------------------>
+						<div class="heading03">Images<span style="color: red;">*</span></div>
+						<div class="pikachoose">
+							<ul id="pikame">
+								<li>
+									
+										
+											
+											<% var imageUrl = Vehicle[0].filename.split(',')[0] %>
+											<img src=<%= imageUrl %> alt="Vehicle Image" />
+										
+									
+								</li>
+							</ul>
+						</div>
+						<!-------------------End small image slider ----------------->
+					</div>
+					<div class="clear"></div>
+         			<!------------------Location  ------------------>
+	                <div class="heading03">  Location <span style="color: red;">*</span></div>
+	                <div class="location"> 
+	                	
+	                		<%= Vehicle[0].location %>
+	                	
+	                	
+							<br />8 Action Blvd
+						
+						<!--  
+						
+						
+						-->
+						
+							<br />Londonderry , NH - 3053
+						
+						
+							<br />Contact Phone :603-437-5700
+						
+						
+							<br />
+							<div style="word-wrap: break-word">
+							<a onclick="confirmExit('http://www.aane.com/');" target="_blank">
+							http://www.aane.com/</a>
+							</div>
+							
+						
+	                </div>
+	      			<!-------------------End Location----------------->
+					<div class="clear"></div>
+					<!------------------Map ------------------>
+					<div class="dr-gmap rich-gmap " id="map"
+						style="width:370px; height: 250px;"> 
+					</div>
+					<!-------------------End Map----------------->
+				</div>
+				<!---------------------------------------------------------------------end Right panel ----------------------------------------->
+			</div>
+			<script type="text/javascript" src="https://js.arcgis.com/3.26"></script>
+			<script type="text/javascript">
+				var defaultLatitude = -71.337587;
+				var defaultLongitude = 42.872254;
+				var myZoom = 14;
+				var map;
+				require([
+					'esri/config',
+					'esri/urlUtils',
+					"esri/map",
+					"esri/tasks/locator",
+					"esri/geometry/webMercatorUtils",
+					"esri/symbols/SimpleMarkerSymbol",
+					"esri/symbols/SimpleLineSymbol",
+					"esri/Color",
+					"esri/graphic",
+					"esri/geometry/Point",
+					"esri/InfoTemplate",
+					"dojo/_base/array",
+					"dojo/domReady!"
+				], function(
+					esriConfig,
+					urlUtils,
+					Map,
+					Locator,
+					webMercatorUtils,
+					SimpleMarkerSymbol,
+					SimpleLineSymbol,
+					Color,
+					Graphic,
+					Point,
+					InfoTemplate,
+					arrayUtils
+				) {
+					map = new Map('map', {
+						basemap: 'satellite',
+						center: [defaultLatitude, defaultLongitude],
+						zoom: myZoom
+					});
+			
+					map.on("load", mapLoaded);
+				      
+			        function mapLoaded(){
+					  var initColor = "#FF0000";
+					  var point = [defaultLatitude, defaultLongitude];
+					  var symbol = new SimpleMarkerSymbol({
+							"size": 4,
+							"color": new Color([179, 0, 0, 0.8]),
+							"outline": new SimpleLineSymbol({
+								"color": new Color([179, 0, 0, 0.5]),
+								"width": 5
+							})
+						});
+					  map.graphics.add(new Graphic(new Point(point), symbol));
+			        }
+				});
+	  		</script>
+			<!-----------------------footer----------------------------->
+			
+
+
+<script type="text/javascript">
+function getPopupWindow(val) {
+	$('#basic-modal-content6').modal();
+}
+</script>
+
+<div class="span-24 footer">
+	<div class="span-15 foot-links">
+		<div class="span-3 link2">
+			<ul>
+				<li><a href="/GSAAutoAuctions/AboutUS" target="_blank"> About Us </a></li>
+				<li><a href="/GSAAutoAuctions/ContactUs" target="_blank"> Contact Us </a></li>
+			</ul>
+		</div>
+		<div class="span-4 link3">
+			<ul>
+				<li><a href="/GSAAutoAuctions/TermsAndConditions" target="_blank"> Terms and Conditions </a></li>
+				<li><a href="/GSAAutoAuctions/PrivacyPolicy" target="_blank"> Privacy Policy</a></li>
+			</ul>
+		</div>
+		<div class="span-4 link3">
+			<ul>
+				<li><a href="/GSAAutoAuctions/OtherGovernmentSales" target="_blank"> Other Government Sales </a></li>
+				<li><a href="/GSAAutoAuctions/BrowserCompatibility" target="_blank" title="This webpage is best viewed in either Google Chrome or Mozilla Firefox or Internet Explorer 9.x or higher." > Browser Compatibility </a></li>
+			</ul>
+		</div>
+		<div class="span-4 link3">
+			<ul>
+				<li><a href="javascript:getPopupWindow('basic-modal-content6');"> Credit Card Notice </a></li>
+				<li><a href="/GSAAutoAuctions/Recall" target="_blank"> Recall Information </a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="span-9 social">
+		<a href="https://www.facebook.com/gsafleetvehiclesales" target="_blank"> 
+			<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/facebook.png" alt="Facebook" title="Find us on Facebook"/>
+		</a>
+		&nbsp;&nbsp;
+		<a href="/GSAAutoAuctions/SaleFeed" target="_blank">
+			<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/rss.png" alt="RSS" title="Really Simple Syndication"/>
+		</a>
+	</div>
+</div>
+			<!-----------------------footer----------------------------->
+		</div>
+	</form>
+</body>
+</html>

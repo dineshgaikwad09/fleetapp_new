@@ -1,0 +1,198 @@
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/favicon.ico" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>GSA Fleet Vehicle Sales</title>
+	<link href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/css/style.css" rel="stylesheet"
+		type="text/css" />
+	
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<script type="text/javascript" src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/browcss.js"></script>
+	<script type="text/javascript"
+		src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery.min.js"></script>
+
+	<!---------------- Auto Suggest script start ------------------>
+	<link rel="stylesheet" type="text/css"
+		href="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/css/jquery-ui.css">
+	<script type='text/javascript'
+		src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery.min.js"></script>
+	<script type='text/javascript'
+		src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/js/jquery-ui.js"></script>
+</head>
+<body>
+  <div>
+  <div>
+    <div class="header">
+        
+		<div style="width: 950px; margin: 0 auto;">
+			<form id="searchBean" action="/GSAAutoAuctions/Login" method="post">
+				<div class="span-24">
+					<div class=" span-6 logo">
+						<a href="/GSAAutoAuctions"> <img
+								src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/GSA_Logo.gif"
+								width="260" height="57" alt="GSA Fleet Vehicle Sales" /> </a>
+					</div>
+				</div>
+				<div class="span-23">
+					<div class="span-10 menu" align="right">
+						<div class=" span-1 menu_left">
+							<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/menu_left.png"
+								width="22" height="34" alt="Rounder Corner image on left" />
+						</div>
+						<div class="menu_bg">
+							<div class="nav">
+								<ul>
+									<li>
+										<a href="/GSAAutoAuctions/">Home</a>
+									</li>
+
+									<li>
+										<a href="/GSAAutoAuctions/MapSearch">Map Search</a>
+									</li>
+									<li>
+										<a href="/GSAAutoAuctions/SaleCalendar">Sale Calendar</a>
+                                    </li>
+                                    <li class="noline">
+                                        <a href="/">Logout</a>
+                                    </li>
+								</ul>
+							</div>
+						</div>
+						<div class=" span-1 menu_right">
+							<img src="https://autoauctions.gsa.gov/GSAAutoAuctions/resources/images/menu_right.png"
+								width="22" height="34" alt="Right Corner" />
+						</div>
+					</div>
+					<div class="search" style="min-height: 42px;">
+						<div class="span-7 search_box">
+							<input id="SearchBox" name="searchText" Title="Search Box" value="Search" class="span-8"
+								onfocus="if(this.value == &#39;Search&#39;){ this.value = &#39;&#39;;} "
+								onblur="if(this.value == &#39;&#39;){ this.value = &#39;Search&#39;;}" type="text"
+								value="" />
+						</div>
+						<div class="span-7 search_zip">
+							<label for="Zip Code" style="height: 10px;;">
+								<input id="zipCodeId" name="zipCode" title="Zip Code"
+									onkeypress="return isNumberKey(event);" value="Zip Code"
+									onfocus="if(this.value == &#39;Zip Code&#39;){ this.value = &#39;&#39;;}"
+									onblur="if(this.value == &#39;&#39;){ this.value = &#39;Zip Code&#39;;}" type="text"
+									value="" maxlength="5" />
+							</label>
+						</div>
+						
+						<div class="span-7 search_button" style="margin: 7px 0 0 5px;">
+							<input id="distanceSearchButtonId" type="submit" style="height: 27px; padding-top: 3px;" class="btn btn-primary" name="action"
+								value="Search" />
+						</div>
+						
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+  <br/>
+  <form class="form-horizontal" role="form" style="padding-top: 100px;padding-left: 50px;width: 950px; 
+  margin: 0 auto;" method="post" action="/insertVehicleDetails" enctype="multipart/form-data">
+    <div class="alert alert-success" id="sucessMessage" role="alert">
+        Vehicle details saved successfully
+      </div>
+    <div class="form-group">
+        <label for="makemodel" class="col-sm-4 control-label">Year / Make / Model</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="makemodel" name="makemodel" placeholder="Year / Make / Model" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="VIN" class="col-sm-4 control-label">VIN</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="VIN" name="VIN" placeholder="VIN" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="type" class="col-sm-4 control-label">Type</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="type" name="type"></textarea>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="location" class="col-sm-4 control-label">Location</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="location" name="location" placeholder="Location" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="cylinders" class="col-sm-4 control-label">Cylinders</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="cylinders" name="cylinders" placeholder="Cylinders" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="fueltype" class="col-sm-4 control-label">Fuel Type</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="fueltype" name="fueltype" placeholder="Fuel Type"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="miles" class="col-sm-4 control-label">Miles</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="miles" name="miles" placeholder="Miles" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="saledate" class="col-sm-4 control-label">Sale Date</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="saledate" name="saledate" placeholder="Sale Date" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="saletype" class="col-sm-4 control-label">Sale Type</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="saletype" name="saletype" placeholder="Sale Type"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="openrecall" class="col-sm-4 control-label">Open Recall</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="openrecall" name="openrecall" placeholder="Open Recall"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="openrecall" class="col-sm-4 control-label">Select Exterior Photos</label>
+        <div class="col-sm-6">
+            <input type="file" placeholder="Exterior" id="exteriorphoto" name="photo" multiple class="btn btn-info"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="openrecall" class="col-sm-4 control-label">Select Interior Photos</label>
+        <div class="col-sm-6">
+            <input type="file" placeholder="Interior" id="interiorphoto" name="photo" multiple class="btn btn-info"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="openrecall" class="col-sm-4 control-label">Select Damage Photos</label>
+        <div class="col-sm-6">
+            <input type="file" placeholder="Damage" id="damagephoto" name="photo" multiple class="btn btn-info"/>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label for="openrecall" class="col-sm-4 control-label"></label>
+        <div class="col-sm-6">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-10 col-sm-offset-2">
+            <! Will be used to display an alert to the user>
+        </div>
+    </div>
+</form>
+  </div>
+</body>
+</html>
+  
