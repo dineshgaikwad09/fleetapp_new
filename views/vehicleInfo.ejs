@@ -45,6 +45,12 @@
 		$("#pikame").PikaChoose();
 	});
 	*/
+
+	function encode(data){
+    let buf = Buffer.from(data);
+    let base64 = buf.toString('base64');
+    return base64
+    };
 </script>
 <!---------------------------------end image slider----------------------------->
 
@@ -728,9 +734,10 @@
 									
 										
 											
-											<% var imageUrl = Vehicle[0].filename.split(',')[0] %>
-											<img src=<%= imageUrl %> alt="Vehicle Image" />
-										
+											<!-- <% var imageUrl = Vehicle[0].filename.split(',')[0] %>
+											<img src=<%= imageUrl %> alt="Vehicle Image" /> -->
+											<% var imageData = VehiclesImageData[0] %>
+											<img src='data:image/jpeg;base64,<%= imageData %>' />
 									
 								</li>
 							</ul>
