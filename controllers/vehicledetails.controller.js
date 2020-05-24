@@ -8,8 +8,8 @@ const querystring = require('querystring');
 // import individual service
 //var S3 = require('aws-sdk/clients/s3');
 const s3 = new AWS.S3({
-    accessKeyId: 'xxx',
-    secretAccessKey: 'xxx'
+    accessKeyId: process.env.aws_access_key_id,
+    secretAccessKey: process.env.aws_secret_access_key
   });
 //var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
 //AWS.config.credentials = credentials;
