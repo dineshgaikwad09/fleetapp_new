@@ -736,7 +736,7 @@
 											
 											<!-- <% var imageUrl = Vehicle[0].filename.split(',')[0] %>
 											<img src=<%= imageUrl %> alt="Vehicle Image" /> -->
-											<% var imageData = VehiclesImageData[0] %>
+											<% var imageData = VehiclesImageData[VehiclesImageData.length-1] %>
 											<img src='data:image/jpeg;base64,<%= imageData %>' />
 									
 								</li>

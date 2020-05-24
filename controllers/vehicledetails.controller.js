@@ -7,18 +7,12 @@ const querystring = require('querystring');
 
 // import individual service
 //var S3 = require('aws-sdk/clients/s3');
-
+const s3 = new AWS.S3({
+    accessKeyId: 'xxx',
+    secretAccessKey: 'xxx'
+  });
 //var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
 //AWS.config.credentials = credentials;
-AWS.config.getCredentials(function(err) {
-    if (err) console.log(err.stack);
-    // credentials not loaded
-    else {
-      console.log("Access key:", AWS.config.credentials.accessKeyId);
-      console.log("Secret access key:", AWS.config.credentials.secretAccessKey);
-    }
-  });
-const s3 = new AWS.S3();
 var sess;
 
 var storage = multer.diskStorage({ 
