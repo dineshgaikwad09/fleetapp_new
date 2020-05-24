@@ -87,7 +87,9 @@ app.use('/', vehicledetails);
 
 // //step 2) create the server
 // http.createServer(requestHandler).listen(3000);
-app.listen(8080, function() {
-	console.log("Server is running at 8080 port!");
+var server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+
+app.listen(server_port, function() {
+	console.log("Server is running at "+ server_port +" port!");
    });
    
